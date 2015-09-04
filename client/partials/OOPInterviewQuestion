@@ -1,0 +1,88 @@
+function getData() {
+  return [
+    {
+      end: 1437134976,
+      start: 1437127776
+    },
+    {
+      end: 1437206976,
+      start: 1437199776
+    },
+    {
+      end: 1437192576,
+      start: 1437185376
+    },
+    {
+      end: 1437178176,
+      start: 1437170976
+    },
+    {
+      end: 1437164492,
+      start: 1437157292
+    },
+    {
+      end: 1437150092,
+      start: 1437142892
+    },
+    {
+      end: 1437135692,
+      start: 1437128492
+    }
+  ];
+}
+
+
+/**
+* Calculates total driving time since last 8hour break
+*/
+function Driver = {
+
+  this.getCumulativeDrivingTime = function() {
+    var times = getData();
+    var total = 0;
+
+    for(var i = times.length-1; i>=0; i-- ) {
+      var timeSinceLastLog = (times[i].start - times[i].end) / 3600;
+      if(timesSiceLastLog >= 8){
+        break;
+      } else {
+        var current = (times[i].end - times[i].start) / 3600;
+        total += current;  
+      }
+    }
+    return total;
+  }
+
+/**
+* returns the ending timestamp of the last logged drive
+*/
+  this.getLastTimeDriven = function() {
+    var driverLogs = getData();
+    return driverLogs[driverLogs.length - 1].end;
+  }
+
+/**
+* returns boolean whether driver has taken a long enough break for cumultaive driving time
+*/
+  this.isItOkToDriveNow = function() {
+    var hoursDrivenSinceBreak = getCumulativeDrivingTime();
+    var lastDriveEndTime = getLastTimeDriven();
+    var hoursSinceLastLog = ((Date.now()/1000) - lastDriveEndTime)/3600;
+
+    if(hoursDrivenSinceBreak >= 12) {
+      if(hoursSinceLastLog >= 8) {
+        return true;
+      } else {
+      return false;
+      }
+    } else {
+      return true;
+    }
+    //return Boolean if hours driven since last break is less than 12
+  }
+
+}
+
+var trevor = new Driver();
+console.log(trevor.isItOkToDriveNow());
+

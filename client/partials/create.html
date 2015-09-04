@@ -1,0 +1,52 @@
+<div ng-controller = 'createController'>
+	<!-- //change the name of the ng-controller to reflect the controller for this page-->
+     <div class="row col s12">
+      <form class="card-panel grey lighten-5 z-depth-1 card" ng-submit='' >
+        <h4 class='center'>Create an Event!</h4>
+        <p class='center-align'>Don't have a date set? Click <a href="#/login">here</a> to poll your group and find a date that works!</p>
+        <div class='col s4'>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="eventTitle" type="text" class="validate" ng-model='event.title'>
+            <label for="eventTitle">Event Title:</label>
+          </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="hostName" type="text" class="validate" ng-model='event.hostName'>
+          <label for="hostName">Host:</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="date" type="date" class="validate" ng-model='event.date'>
+<!--           <label for="date">Date:</label> -->
+        </div>
+      </div>
+      </div>
+
+      <div class='col s4'>
+        <div class="row">
+          <div class="input-field col s12">
+            <input places-auto-complete types="['geocode']" type="text" name="location" ng-model="event.location" on-place-changed="placeChanged(place)" id="streetAddress" autocomplete="off" required /> 
+          </div>
+        </div>
+
+     <!--    <div class="row">
+          <div class="input-field col s12">
+            <input id="passConf" type="password" class="validate" ng-model='reg.passConf'>
+            <label for="passConf">Comfirm your Password</label>
+          </div>
+        </div> -->
+        <div class='row'>
+        <p class='right-align'><button class="waves-effect waves-teal btn-flat " ng-click="create()" type="button">Create</button></p>
+        </div>
+        <div class='row'></div>
+      </div>
+
+    </form>
+  </div>
+
+</div>
